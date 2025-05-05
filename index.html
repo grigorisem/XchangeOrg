@@ -17,13 +17,19 @@
   <div class="content">
     <form action="/" method="POST">
       <div class="form-inner">
-        <select id="fromCurrencySelect"></select>
-        <input type="number" id="fromCurrency" name="fromCurrency" placeholder="0"/>
-        <input type="number" id="toCurrency" name="toCurrency" placeholder="0"/>
-        <select id="toCurrencySelect"></select>
+        <div class="from">
+          <img id="fromFlag" src="" alt="From Currency Flag" class="flag" />
+          <select id="fromCurrencySelect"></select>
+          <input type="number" id="fromCurrency" name="fromCurrency" placeholder="0" />
+        </div>
+        <div class="to">
+          <img id="toFlag" src="" alt="To Currency Flag" class="flag" />
+          <select id="toCurrencySelect"></select>
+          <input type="number" id="toCurrency" name="toCurrency" placeholder="0" />
+        </div>
       </div>
     </form>
-
+    
   </div>
 
   <script src="assets/js/script.js"></script>

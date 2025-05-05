@@ -6,6 +6,11 @@ const toInput = document.getElementById("toCurrency");
 let rates = {};
 let isTypingFrom = true;
 
+const getImageURL = (currencyCode) => {
+  const flag = "https://wise.com/public-resources/assets/flags/rectangle/{currencyCode}.png";
+  return flag.replace("{currencyCode}", currencyCode.toLowerCase());
+};
+
 async function fetchRates() {
   try {
     const res = await fetch("https://open.er-api.com/v6/latest/USD");
@@ -22,35 +27,39 @@ async function fetchRates() {
 function populateSelects(currencyCodes) {
   fromSelect.innerHTML = "";
   toSelect.innerHTML = "";
-  currencyCodes.forEach(code => {
+
+  currencyCodes.forEach(currencyCode => {
+    const flagUrl = getImageURL(currencyCode);
+    const optionText = `${currencyCode} `;
+    
     const opt1 = document.createElement("option");
-    opt1.value = code;
-    opt1.textContent = code;
+    opt1.value = currencyCode;
+    opt1.textContent = optionText;
     fromSelect.appendChild(opt1);
 
     const opt2 = document.createElement("option");
-    opt2.value = code;
-    opt2.textContent = code;
+    opt2.value = currencyCode;
+    opt2.textContent = optionText;
     toSelect.appendChild(opt2);
   });
 
   fromSelect.value = "USD";
   toSelect.value = "EUR";
+
+  loadFlag(fromSelect);
+  loadFlag(toSelect);
 }
 
 function updateRateDisplay() {
-  const from = fromSelect.value;
-  const to = toSelect.value;
-  if (rates[from] && rates[to]) {
-    const rate = rates[to] / rates[from];
-    document.getElementById("rateDisplay").textContent = `1 ${from} = ${rate.toFixed(4)} ${to}`;
+  const rateDisplay = document.getElementById("rateDisplay");
+  if (rateDisplay) {
+    rateDisplay.remove();
   }
 }
 
 function convert() {
   const from = fromSelect.value;
   const to = toSelect.value;
-
   const fromAmount = parseFloat(fromInput.value);
   const toAmount = parseFloat(toInput.value);
 
@@ -67,12 +76,21 @@ function convert() {
   updateRateDisplay();
 }
 
+function loadFlag(selectElement) {
+  const flagContainer = selectElement === fromSelect ? document.getElementById("fromFlag") : document.getElementById("toFlag");
+  const currencyCode = selectElement.value;
+  const flagUrl = getImageURL(currencyCode);
+  flagContainer.src = flagUrl;
+}
+
 fromSelect.addEventListener("change", () => {
+  loadFlag(fromSelect);
   updateRateDisplay();
   convert();
 });
 
 toSelect.addEventListener("change", () => {
+  loadFlag(toSelect);
   updateRateDisplay();
   convert();
 });
