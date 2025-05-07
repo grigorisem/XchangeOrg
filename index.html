@@ -9,24 +9,28 @@
 </head>
 <body>
   <header>
-    <div class="logo">
+    <div class="header-inner">
+      <div class="logo">
+        <img src="assets/img/logo.png" alt="logo">
+      </div>
+      <div class="company-name">XchangeOrg</div>
     </div>
-    <div class="company-name">XchangeOrg</div>
   </header>
 
   <div class="content">
     <form action="/" method="POST">
       <div class="form-inner">
-        <div class="from">
-          <img id="fromFlag" src="" alt="From Currency Flag" class="flag" />
-          <select id="fromCurrencySelect"></select>
-          <input type="number" id="fromCurrency" name="fromCurrency" placeholder="0" />
-        </div>
-        <div class="to">
-          <img id="toFlag" src="" alt="To Currency Flag" class="flag" />
-          <select id="toCurrencySelect"></select>
-          <input type="number" id="toCurrency" name="toCurrency" placeholder="0" />
-        </div>
+          <p>Обмен валют</p>
+          <div class="from">
+            <img id="fromFlag" src="" alt="From Currency Flag" class="flag" />
+            <select id="fromCurrencySelect"></select>
+            <input type="number" id="fromCurrency" name="fromCurrency" placeholder="0" />
+          </div>
+          <div class="to">
+            <img id="toFlag" src="" alt="To Currency Flag" class="flag" />
+            <select id="toCurrencySelect"></select>
+            <input type="number" id="toCurrency" name="toCurrency" placeholder="0" />
+          </div>
       </div>
     </form>
     

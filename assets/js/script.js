@@ -73,6 +73,15 @@ function convert() {
     fromInput.value = result.toFixed(2);
   }
 
+  if (toInput.value <0 || toInput.value <0) {
+    fromInput.value = 0;
+    toInput.value = 0;
+  }
+  if (toInput.value <0 || toInput.value <0) {
+    fromInput.value = 0;
+    toInput.value = 0;
+  }
+
   updateRateDisplay();
 }
 
@@ -98,7 +107,7 @@ toSelect.addEventListener("change", () => {
 fromInput.addEventListener("input", () => {
   isTypingFrom = true;
   if (fromInput.value === "") {
-    toInput.value = "0";
+    toInput.value = 0;
   }
   convert();
 });
@@ -106,7 +115,7 @@ fromInput.addEventListener("input", () => {
 toInput.addEventListener("input", () => {
   isTypingFrom = false;
   if (toInput.value === "") {
-    fromInput.value = "0";
+    fromInput.value = 0;
   }
   convert();
 });
